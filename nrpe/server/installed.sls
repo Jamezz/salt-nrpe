@@ -12,7 +12,7 @@ include:
   'config': {
     'manage': salt['pillar.get']('nrpe:server:config:manage', False), 
     'name': nrpe.server.config,
-    'source': salt['pillar.get']('nrpe:server:config:source', 'salt://nrpe/conf/nrpe.cfg'),
+    'source': salt['pillar.get']('nrpe:server:config:source', 'salt://nrpe/conf/server.cfg'),
     },
 } %}
 
@@ -23,6 +23,7 @@ nrpe.server.installed:
   file.managed:
     - name: {{ server.config.name }}
     - source: {{ server.config.source }}
+    - template: jinja
 {% endif %}
 {% if server.plugins.manage %}
   require:

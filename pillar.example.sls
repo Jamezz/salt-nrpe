@@ -5,8 +5,14 @@ nrpe:
       manage: False
     config:
       manage: False
-      dbn: False
       source: salt://nrpe/conf/server.cfg
+      port: 5666
+      group: 'nagios'
+      allowedhosts: '127.0.0.1',
+      dbn: 'nagios'
+      debug: False
+      commandtimeout: 60
+      connectiontimeout: 300
   client:
     upgrade: False
   plugins:

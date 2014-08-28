@@ -2,10 +2,20 @@
   'Debian': {
     'package': 'nagios-nrpe-server',
     'config': '/etc/nagios/nrpe.cfg',
+    'pidfile': '/var/run/nagios/nrpe.pid',
+    'user': 'nagios',
+    'group': 'nagios',
+    'includefile': '/etc/nagios/nrpe_local.cfg',
+    'includedir': '/etc/nagios/nrpe.d/',
   },
   'RedHat': {
     'package': 'nrpe',
     'config': '/etc/nagios/nrpe.cfg',
+    'pidfile': '/var/run/nrpe/nrpe.pid',
+    'user': 'nrpe',
+    'group': 'nrpe',
+    'includefile': '',
+    'includedir': '/etc/nrpe.d/',
   },
 }, merge=salt['pillar.get']('nrpe:lookup:server')) %}
 
