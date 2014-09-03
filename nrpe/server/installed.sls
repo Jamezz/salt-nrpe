@@ -29,11 +29,13 @@ nrpe.server.installed:
   {% if server.config.manage %}
       - file: nrpe.server.installed
   {% endif %}
+      - file: nrpe.plugins.installed
     - watch:
       - pkg: nrpe.server.installed
   {% if server.config.manage %}
       - file: nrpe.server.installed
   {% endif %}
+      - file: nrpe.plugins.installed
 {% endif %}
 {% if server.config.manage %}
   file.managed:
@@ -42,6 +44,4 @@ nrpe.server.installed:
     - template: jinja
 {% endif %}
   require:
-    sls: nrpe.plugins.installed
-  watch:
-    file: nrpe.plugins.installed
+    - sls: nrpe.plugins.installed
