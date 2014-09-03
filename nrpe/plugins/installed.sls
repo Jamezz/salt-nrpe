@@ -5,7 +5,7 @@
   'upgrade': salt['pillar.get']('nrpe:plugins:upgrade', False),
   'config': {
     'manage': salt['pillar.get']('nrpe:plugins:config:manage', False), 
-    'name': nrpe.server.includedir ~ '/plugins.cfg',
+    'name': nrpe.plugins.config,
     },
 } %}
 

@@ -6,7 +6,6 @@
   'config': {
     'manage': salt['pillar.get']('nrpe:plugins:config:manage', False), 
     'name': nrpe.plugins.config,
-    'source': salt['pillar.get']('nrpe:plugins:config:source', 'salt://nrpe/conf/plugins.cfg'),
     },
 } %}
 
