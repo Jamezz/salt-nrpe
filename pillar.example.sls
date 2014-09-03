@@ -1,8 +1,6 @@
 nrpe:
   server:
     upgrade: False
-    plugins: 
-      manage: False
     config:
       manage: False
       source: salt://nrpe/conf/server.cfg
