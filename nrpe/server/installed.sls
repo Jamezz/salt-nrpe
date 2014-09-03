@@ -23,7 +23,7 @@ nrpe.server.installed:
     - name: {{ server.package }}
 {% if server.service.manage %}
   service.{{ ' running' if server.service.enable else 'dead' }}:
-    - name {{ server.service.name }}
+    - name: {{ server.service.name }}
     - require:
       - pkg: nrpe.server.installed
   {% if server.config.manage %}
