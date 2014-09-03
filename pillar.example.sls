@@ -1,6 +1,10 @@
 nrpe:
   server:
-    upgrade: False
+    package:
+      upgrade: False
+    service:
+      manage: False
+      enable: True
     config:
       manage: False
       source: salt://nrpe/conf/server.cfg
@@ -11,10 +15,9 @@ nrpe:
       debug: False
       commandtimeout: 60
       connectiontimeout: 300
-  client:
-    upgrade: False
   plugins:
-    upgrade: False
+    package:
+      upgrade: False
     config: 
       manage: False
       contents: |
@@ -22,7 +25,6 @@ nrpe:
   lookup:
     plugins:
       package: nagios-plugins-all
-    client:
-      package: nagios-plugins-nrpe
     server:
       package: nrpe
+      service: nrpe
