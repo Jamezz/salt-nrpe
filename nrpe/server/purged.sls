@@ -6,9 +6,6 @@ include:
 {% set server = {
   'package': nrpe.server.package,
   'upgrade': salt['pillar.get']('nrpe:server:upgrade', False),
-  'plugins': {
-    'manage': salt['pillar.get']('nrpe:server:plugins:manage', False),
-  },
   'config': {
     'manage': salt['pillar.get']('nrpe:server:config:manage', False), 
     'name': nrpe.server.config,
@@ -22,8 +19,4 @@ nrpe.server.purged:
 {% if server.config.manage %}
   file.absent:
     - name: {{ server.config.name }}
-{% endif %}
-{% if server.plugins.manage %}
-  require:
-    - sls: nrpe.plugins.purged
 {% endif %}

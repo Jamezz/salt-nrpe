@@ -1,14 +1,8 @@
-include:
-  - nrpe.plugins.installed
-
 {% from "nrpe/map.jinja" import nrpe with context %}
 
 {% set server = {
   'package': nrpe.server.package,
   'upgrade': salt['pillar.get']('nrpe:server:upgrade', False),
-  'plugins': {
-    'manage': salt['pillar.get']('nrpe:server:plugins:manage', False),
-  }, 
   'config': {
     'manage': salt['pillar.get']('nrpe:server:config:manage', False), 
     'name': nrpe.server.config,
@@ -24,8 +18,4 @@ nrpe.server.installed:
     - name: {{ server.config.name }}
     - source: {{ server.config.source }}
     - template: jinja
-{% endif %}
-{% if server.plugins.manage %}
-  require:
-    - sls: nrpe.plugins.installed
 {% endif %}
