@@ -1,6 +1,7 @@
 {% set server = salt['grains.filter_by']( {
   'Debian': {
     'package': 'nagios-nrpe-server',
+    'service': 'nagios-nrpe-server',
     'config': '/etc/nagios/nrpe.cfg',
     'pidfile': '/var/run/nagios/nrpe.pid',
     'user': 'nagios',
@@ -10,6 +11,7 @@
   },
   'RedHat': {
     'package': 'nrpe',
+    'service': 'nrpe',
     'config': '/etc/nagios/nrpe.cfg',
     'pidfile': '/var/run/nrpe/nrpe.pid',
     'user': 'nrpe',
@@ -18,15 +20,6 @@
     'includedir': '/etc/nrpe.d/',
   },
 }, merge=salt['pillar.get']('nrpe:lookup:server')) %}
-
-{% set client = salt['grains.filter_by']( {
-  'Debian': {
-    'package': 'nagios-nrpe-plugin',
-  },
-  'RedHat': {
-    'package': 'nagios-plugins-nrpe',
-  },
-}, merge=salt['pillar.get']('nrpe:lookup:client')) %}
 
 {% set plugins = salt['grains.filter_by']( {
   'Debian': {
@@ -43,6 +36,6 @@
 
 {% set nrpe = {
   'server': server,
-  'client': client,
   'plugins': plugins,
+  'client': client,
 } %}
