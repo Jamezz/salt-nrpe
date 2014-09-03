@@ -22,7 +22,7 @@ nrpe.server.installed:
   pkg.{{ 'latest' if server.upgrade else 'installed' }}:
     - name: {{ server.package }}
 {% if server.service.manage %}
-  service.{{ ' running' if server.service.enable else 'dead' }}:
+  service.{{ 'running' if server.service.enable else 'dead' }}:
     - name: {{ server.service.name }}
     - require:
       - pkg: nrpe.server.installed
