@@ -9,7 +9,7 @@ nrpe:
       port: 5666
       group: 'nagios'
       allowedhosts: '127.0.0.1',
-      dbn: 'nagios'
+      dbn: False
       debug: False
       commandtimeout: 60
       connectiontimeout: 300
@@ -19,7 +19,8 @@ nrpe:
     upgrade: False
     config: 
       manage: False
-      source: salt://nrpe/conf/plugins.cfg
+      contents: |
+
   lookup:
     plugins:
       package: nagios-plugins-all
